@@ -7,6 +7,7 @@
     <groupId>ir.snapp.pay.side.project</groupId>
     <artifactId>vamak</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <!-- project configs -->
@@ -20,6 +21,10 @@
         <org.junit.bom.version>5.10.3</org.junit.bom.version>
         <!-- versions -->
     </properties>
+
+    <modules>
+        <module>commons</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
