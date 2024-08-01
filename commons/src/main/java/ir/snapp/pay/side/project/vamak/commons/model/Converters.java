@@ -14,12 +14,12 @@ class Converters {
         throw new AssertionError("Utility class");
     }
 
-    private static abstract class BasicIdentifiableConverter<T extends Identifiable<Character>> implements
+    static abstract class BasicIdentifiableAttrConverter<T extends Identifiable<Character>> implements
             AttributeConverter<T, Character> {
 
         final T defaultValue;
 
-        BasicIdentifiableConverter(T defaultValue) {
+        BasicIdentifiableAttrConverter(T defaultValue) {
             this.defaultValue = defaultValue;
         }
 
@@ -32,38 +32,39 @@ class Converters {
         }
 
         @Override
-        public abstract T convertToEntityAttribute(Character dbData);
+        public T convertToEntityAttribute(Character dbData) {
+            if (nonNull(dbData)) {
+                return valueOf(dbData);
+            }
+            return defaultValue;
+        }
+
+        abstract T valueOf(Character dbData);
     }
 
     @Converter
-    static class _Model extends BasicIdentifiableConverter<Model> {
+    static class _Model extends BasicIdentifiableAttrConverter<Model> {
 
         public _Model() {
             super(Model.UNKNOWN);
         }
 
         @Override
-        public Model convertToEntityAttribute(Character dbData) {
-            if (nonNull(dbData)) {
-                return Model.valueOf(dbData);
-            }
-            return defaultValue;
+        Model valueOf(Character dbData) {
+            return Model.valueOf(dbData);
         }
     }
 
     @Converter
-    static class _PayType extends BasicIdentifiableConverter<PayType> {
+    static class _PayType extends BasicIdentifiableAttrConverter<PayType> {
 
         public _PayType() {
             super(PayType.UNKNOWN);
         }
 
         @Override
-        public PayType convertToEntityAttribute(Character dbData) {
-            if (nonNull(dbData)) {
-                return PayType.valueOf(dbData);
-            }
-            return defaultValue;
+        PayType valueOf(Character dbData) {
+            return PayType.valueOf(dbData);
         }
     }
 }
