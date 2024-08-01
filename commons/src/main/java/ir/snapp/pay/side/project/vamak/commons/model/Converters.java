@@ -1,9 +1,11 @@
 package ir.snapp.pay.side.project.vamak.commons.model;
 
+import ir.snapp.pay.side.project.vamak.commons.Identifiable;
+import ir.snapp.pay.side.project.vamak.commons.Model;
+import ir.snapp.pay.side.project.vamak.commons.PayType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
-import static ir.snapp.pay.side.project.vamak.commons.model.Model.UNKNOWN;
 import static java.util.Objects.nonNull;
 
 class Converters {
@@ -12,15 +14,32 @@ class Converters {
         throw new AssertionError("Utility class");
     }
 
-    @Converter
-    static class _Model implements AttributeConverter<Model, Character> {
+    private static abstract class BasicIdentifiableConverter<T extends Identifiable<Character>> implements
+            AttributeConverter<T, Character> {
+
+        final T defaultValue;
+
+        BasicIdentifiableConverter(T defaultValue) {
+            this.defaultValue = defaultValue;
+        }
 
         @Override
-        public Character convertToDatabaseColumn(Model attribute) {
+        public Character convertToDatabaseColumn(T attribute) {
             if (nonNull(attribute)) {
-                return attribute.getSymbol();
+                return attribute.getCode();
             }
-            return Model.UNKNOWN.getSymbol();
+            return defaultValue.getCode();
+        }
+
+        @Override
+        public abstract T convertToEntityAttribute(Character dbData);
+    }
+
+    @Converter
+    static class _Model extends BasicIdentifiableConverter<Model> {
+
+        public _Model() {
+            super(Model.UNKNOWN);
         }
 
         @Override
@@ -28,19 +47,15 @@ class Converters {
             if (nonNull(dbData)) {
                 return Model.valueOf(dbData);
             }
-            return Model.UNKNOWN;
+            return defaultValue;
         }
     }
 
     @Converter
-    static class _PayType implements AttributeConverter<PayType, Character> {
+    static class _PayType extends BasicIdentifiableConverter<PayType> {
 
-        @Override
-        public Character convertToDatabaseColumn(PayType attribute) {
-            if (nonNull(attribute)) {
-                return attribute.getCode();
-            }
-            return PayType.UNKNOWN.getCode();
+        public _PayType() {
+            super(PayType.UNKNOWN);
         }
 
         @Override
@@ -48,7 +63,7 @@ class Converters {
             if (nonNull(dbData)) {
                 return PayType.valueOf(dbData);
             }
-            return PayType.UNKNOWN;
+            return defaultValue;
         }
     }
 }
