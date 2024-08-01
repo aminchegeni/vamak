@@ -20,7 +20,7 @@ class Converters {
             if (nonNull(attribute)) {
                 return attribute.getSymbol();
             }
-            return UNKNOWN.getSymbol();
+            return Model.UNKNOWN.getSymbol();
         }
 
         @Override
@@ -28,7 +28,27 @@ class Converters {
             if (nonNull(dbData)) {
                 return Model.valueOf(dbData);
             }
-            return UNKNOWN;
+            return Model.UNKNOWN;
+        }
+    }
+
+    @Converter
+    static class _PayType implements AttributeConverter<PayType, Character> {
+
+        @Override
+        public Character convertToDatabaseColumn(PayType attribute) {
+            if (nonNull(attribute)) {
+                return attribute.getCode();
+            }
+            return PayType.UNKNOWN.getCode();
+        }
+
+        @Override
+        public PayType convertToEntityAttribute(Character dbData) {
+            if (nonNull(dbData)) {
+                return PayType.valueOf(dbData);
+            }
+            return PayType.UNKNOWN;
         }
     }
 }
