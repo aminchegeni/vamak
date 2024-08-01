@@ -2,7 +2,7 @@ package ir.snapp.pay.side.project.vamak.commons.model;
 
 import ir.snapp.pay.side.project.vamak.commons.Identifiable;
 import ir.snapp.pay.side.project.vamak.commons.Model;
-import ir.snapp.pay.side.project.vamak.commons.PayType;
+import ir.snapp.pay.side.project.vamak.commons.ReceiveType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
@@ -56,15 +56,15 @@ class Converters {
     }
 
     @Converter
-    static class _PayType extends BasicIdentifiableAttrConverter<PayType> {
+    static class _ReceiveType extends BasicIdentifiableAttrConverter<ReceiveType> {
 
-        public _PayType() {
-            super(PayType.UNKNOWN);
+        public _ReceiveType() {
+            super(ReceiveType.UNKNOWN);
         }
 
         @Override
-        PayType valueOf(Character dbData) {
-            return PayType.valueOf(dbData);
+        ReceiveType valueOf(Character dbData) {
+            return ReceiveType.valueOf(dbData);
         }
     }
 }

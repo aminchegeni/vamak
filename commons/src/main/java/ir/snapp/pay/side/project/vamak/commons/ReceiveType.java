@@ -2,21 +2,21 @@ package ir.snapp.pay.side.project.vamak.commons;
 
 import java.util.Map;
 
-public enum PayType implements Identifiable<Character> {
+public enum ReceiveType implements Identifiable<Character> {
 
     UNKNOWN     ('U'),
     TO_WINNER   ('W'),
     TO_OWNER    ('O');
 
-    private static final Map<Character, PayType> CODES = Identifiable.createCache(PayType.class);
+    private static final Map<Character, ReceiveType> CODES = Identifiable.createCache(ReceiveType.class);
 
     private final char code;
 
-    PayType(char code) {
+    ReceiveType(char code) {
         this.code = code;
     }
 
-    public static PayType valueOf(char code) {
+    public static ReceiveType valueOf(char code) {
         return CODES.getOrDefault(code, UNKNOWN);
     }
 
