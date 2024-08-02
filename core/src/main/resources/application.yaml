@@ -1,6 +1,11 @@
 logging:
   level:
     root: info
+    org:
+      springframework:
+        jdbc:
+          datasource:
+            init: debug
 
 server:
   servlet:
@@ -29,3 +34,4 @@ spring:
         order_updates: true
         show_sql: true
         format_sql: true
+    defer-datasource-initialization: true
