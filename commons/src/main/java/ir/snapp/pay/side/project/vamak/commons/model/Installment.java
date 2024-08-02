@@ -29,11 +29,17 @@ public class Installment extends BaseEntity {
     private long id;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "schedule_id", referencedColumnName = "id", columnDefinition = "BIGINT")
+    @JoinColumn(
+            nullable = false, name = "schedule_id", referencedColumnName = "id", columnDefinition = "BIGINT",
+            foreignKey = @ForeignKey(name = "installment.fk.schedule_id-to-schedule.id")
+    )
     private Schedule schedule;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "payer_id", referencedColumnName = "id", columnDefinition = "BIGINT")
+    @JoinColumn(
+            nullable = false, name = "payer_id", referencedColumnName = "id", columnDefinition = "BIGINT",
+            foreignKey = @ForeignKey(name = "installment.fk.payer_id-to-member.id")
+    )
     private Member payer;
 
     @Convert(converter = Converters._PayType.class)

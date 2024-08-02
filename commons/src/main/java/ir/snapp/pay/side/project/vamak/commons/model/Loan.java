@@ -28,7 +28,7 @@ public class Loan extends BaseEntity {
     @GeneratedValue(strategy = IDENTITY)
     private int id;
 
-    @Column(unique = true, nullable = false, length = 100)
+    @Column(/*unique = true, */nullable = false, length = 100)
     private String name;
 
     @Convert(converter = Converters._Model.class)
@@ -39,7 +39,10 @@ public class Loan extends BaseEntity {
     private double amount;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "owner_id", referencedColumnName = "id", columnDefinition = "INT")
+    @JoinColumn(
+            nullable = false, name = "owner_id", referencedColumnName = "id", columnDefinition = "INT",
+            foreignKey = @ForeignKey(name = "loan.fk.owner_id-to-member.id")
+    )
     private Member owner;
 
     @Column(nullable = false, name = "num_of_members", columnDefinition = "SMALLINT DEFAULT 0")

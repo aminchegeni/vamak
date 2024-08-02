@@ -24,13 +24,16 @@ public class Account extends BaseEntity {
     private int id;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "member_id", referencedColumnName = "id", columnDefinition = "INT")
+    @JoinColumn(
+            nullable = false, name = "member_id", referencedColumnName = "id", columnDefinition = "INT",
+            foreignKey = @ForeignKey(name = "account.fk.member_id-to-member.id")
+    )
     private Member member;
 
-    @Column(unique = true, nullable = false, length = 16, columnDefinition = "CHAR(16)")
+    @Column(/*unique = true, */nullable = false, length = 16, columnDefinition = "CHAR(16)")
     private String pan;
 
-    @Column(unique = true, nullable = false, length = 26, columnDefinition = "CHAR(26)")
+    @Column(/*unique = true, */nullable = false, length = 26, columnDefinition = "CHAR(26)")
     private String iban;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")

@@ -31,11 +31,17 @@ public class Schedule extends BaseEntity {
     private short priority;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "loan_id", referencedColumnName = "id", columnDefinition = "INT")
+    @JoinColumn(
+            nullable = false, name = "loan_id", referencedColumnName = "id", columnDefinition = "INT",
+            foreignKey = @ForeignKey(name = "schedule.fk.loan_id-to-loan.id")
+    )
     private Loan loan;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "winner_id", referencedColumnName = "id", columnDefinition = "INT")
+    @JoinColumn(
+            nullable = false, name = "winner_id", referencedColumnName = "id", columnDefinition = "INT",
+            foreignKey = @ForeignKey(name = "schedule.fk.winner_id-to-member.id")
+    )
     private Member winner;
 
     @Column(nullable = false, name = "start_date", columnDefinition = "DATE DEFAULT CURRENT_DATE")

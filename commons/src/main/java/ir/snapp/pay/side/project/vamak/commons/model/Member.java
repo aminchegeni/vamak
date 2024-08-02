@@ -33,7 +33,7 @@ public class Member extends BaseEntity {
     @Column(length = 50, columnDefinition = "NVARCHAR(50) DEFAULT NULL")
     private String family;
 
-    @Column(unique = true, nullable = false, updatable = false, length = 40, columnDefinition = "NVARCHAR(40)")
+    @Column(/*unique = true, */nullable = false, updatable = false, length = 40, columnDefinition = "NVARCHAR(40)")
     private String username;
 
     @Column(length = 11, columnDefinition = "CHAR(11) DEFAULT NULL")
