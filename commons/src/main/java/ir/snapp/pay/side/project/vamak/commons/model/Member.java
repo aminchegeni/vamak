@@ -36,6 +36,9 @@ public class Member extends BaseEntity {
     @Column(/*unique = true, */nullable = false, updatable = false, length = 40, columnDefinition = "NVARCHAR(40)")
     private String username;
 
+    @Column(/*unique = true, */nullable = false, columnDefinition = "NVARCHAR(255)")
+    private String password;
+
     @Column(length = 11, columnDefinition = "CHAR(11) DEFAULT NULL")
     private String mobile;
 
