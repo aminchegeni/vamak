@@ -16,11 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Inherited
 public @interface Api {
 
-    @AliasFor(attribute = "version")
     Version value();
-
-    @AliasFor(attribute = "value")
-    Version version();
 
     enum Version {
         V1, V2, V3, V4, V5
