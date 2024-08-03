@@ -2,7 +2,7 @@ package ir.snapp.pay.side.project.vamak.commons;
 
 import java.util.Map;
 
-public enum Model implements Identifiable<Character> {
+public enum LoanModel implements Identifiable<Character> {
 
     UNKNOWN     ('U'),
     GOLD_BASE   ('G'),
@@ -10,15 +10,15 @@ public enum Model implements Identifiable<Character> {
     BUTTERFLY   ('B'),
     NORMAL      ('N');
 
-    private static final Map<Character, Model> SYMBOLS = Identifiable.createCache(Model.class);
+    private static final Map<Character, LoanModel> SYMBOLS = Identifiable.createCache(LoanModel.class);
 
     private final char symbol;
 
-    Model(char symbol) {
+    LoanModel(char symbol) {
         this.symbol = symbol;
     }
 
-    public static Model valueOf(char symbol) {
+    public static LoanModel valueOf(char symbol) {
         return SYMBOLS.getOrDefault(symbol, UNKNOWN);
     }
 

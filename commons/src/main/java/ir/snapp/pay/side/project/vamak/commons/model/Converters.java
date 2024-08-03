@@ -1,7 +1,7 @@
 package ir.snapp.pay.side.project.vamak.commons.model;
 
 import ir.snapp.pay.side.project.vamak.commons.Identifiable;
-import ir.snapp.pay.side.project.vamak.commons.Model;
+import ir.snapp.pay.side.project.vamak.commons.LoanModel;
 import ir.snapp.pay.side.project.vamak.commons.PayType;
 import ir.snapp.pay.side.project.vamak.commons.ReceiveType;
 import jakarta.persistence.AttributeConverter;
@@ -44,15 +44,15 @@ class Converters {
     }
 
     @Converter
-    static class _Model extends BasicIdentifiableAttrConverter<Model> {
+    static class _LoanModel extends BasicIdentifiableAttrConverter<LoanModel> {
 
-        public _Model() {
-            super(Model.UNKNOWN);
+        public _LoanModel() {
+            super(LoanModel.UNKNOWN);
         }
 
         @Override
-        Model valueOf(Character dbData) {
-            return Model.valueOf(dbData);
+        LoanModel valueOf(Character dbData) {
+            return LoanModel.valueOf(dbData);
         }
     }
 

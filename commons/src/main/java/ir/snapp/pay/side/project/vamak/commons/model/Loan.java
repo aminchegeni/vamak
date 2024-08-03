@@ -1,6 +1,6 @@
 package ir.snapp.pay.side.project.vamak.commons.model;
 
-import ir.snapp.pay.side.project.vamak.commons.Model;
+import ir.snapp.pay.side.project.vamak.commons.LoanModel;
 import ir.snapp.pay.side.project.vamak.commons.ReceiveType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,9 +31,9 @@ public class Loan extends BaseEntity {
     @Column(/*unique = true, */nullable = false, length = 100)
     private String name;
 
-    @Convert(converter = Converters._Model.class)
+    @Convert(converter = Converters._LoanModel.class)
     @Column(nullable = false, columnDefinition = "CHAR(1) DEFAULT 'N'")
-    private Model model;
+    private LoanModel model;
 
     @Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0.0")
     private double amount;
