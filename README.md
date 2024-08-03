@@ -168,6 +168,7 @@ We would like to thank the following for their contributions and inspiration:
 - Inspiration: [matiassingers/awesome-readme](https://github.com/matiassingers/awesome-readme)
 - Design tools: [Canva](https://www.canva.com/) - Used for designing the logo and other graphical elements.
 - Payment solutions: [Snapppay](https://snapppay.ir) - For their innovative payment solutions.
+- ASCII Art: [ASCII Art Generator](https://www.asciiart.eu/image-to-ascii) - Used for designing ASCII art for the Spring Boot banner.
 - [ChatGPT](https://www.openai.com/chatgpt) for assistance in creating this README
 
 ## Contact
