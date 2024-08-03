@@ -1,7 +1,10 @@
 package ir.snapp.pay.side.project.vamak.commons;
 
+import lombok.Getter;
+
 import java.util.Map;
 
+@Getter
 public enum LoanModel implements Identifiable<Character> {
 
     UNKNOWN     ('U'),
@@ -24,6 +27,6 @@ public enum LoanModel implements Identifiable<Character> {
 
     @Override
     public Character getCode() {
-        return symbol;
+        return getSymbol();
     }
 }

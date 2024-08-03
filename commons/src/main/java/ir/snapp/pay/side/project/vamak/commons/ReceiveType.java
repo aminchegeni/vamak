@@ -1,7 +1,10 @@
 package ir.snapp.pay.side.project.vamak.commons;
 
+import lombok.Getter;
+
 import java.util.Map;
 
+@Getter
 public enum ReceiveType implements Identifiable<Character> {
 
     UNKNOWN     ('U'),
@@ -18,10 +21,5 @@ public enum ReceiveType implements Identifiable<Character> {
 
     public static ReceiveType valueOf(char code) {
         return CODES.getOrDefault(code, UNKNOWN);
-    }
-
-    @Override
-    public Character getCode() {
-        return code;
     }
 }

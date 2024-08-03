@@ -1,7 +1,10 @@
 package ir.snapp.pay.side.project.vamak.commons;
 
+import lombok.Getter;
+
 import java.util.Map;
 
+@Getter
 public enum PayType implements Identifiable<Character> {
 
     UNK ('U'),
@@ -18,10 +21,5 @@ public enum PayType implements Identifiable<Character> {
 
     public static PayType valueOf(char code) {
         return CODES.get(code);
-    }
-
-    @Override
-    public Character getCode() {
-        return code;
     }
 }
