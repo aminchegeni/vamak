@@ -5,7 +5,7 @@ import lombok.Getter;
 
 import java.util.Map;
 
-@Getter
+@Getter(onMethod_ = @Override)
 public enum Outcome implements Identifiable<Integer> {
 
     UNKNOWN (-1),
@@ -14,7 +14,7 @@ public enum Outcome implements Identifiable<Integer> {
 
     private static final Map<Integer, Outcome> CODES = Identifiable.createCache(Outcome.class);
 
-    private final int code;
+    private final Integer code;
 
     Outcome(int code) {
         this.code = code;

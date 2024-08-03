@@ -5,7 +5,7 @@ import lombok.Getter;
 
 import java.util.Map;
 
-@Getter
+@Getter(onMethod_ = @Override)
 public enum Reason implements Identifiable<Integer> {
 
     UNKNOWN (-1),
@@ -13,7 +13,7 @@ public enum Reason implements Identifiable<Integer> {
 
     private static final Map<Integer, Reason> CODES = Identifiable.createCache(Reason.class);
 
-    private final int code;
+    private final Integer code;
 
     Reason(int code) {
         this.code = code;

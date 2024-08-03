@@ -14,6 +14,7 @@ import java.util.Set;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 import static ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Outcome.*;
 import static java.util.Objects.requireNonNullElseGet;
+import static lombok.Builder.Default;
 
 @Data
 @Builder
@@ -25,12 +26,15 @@ public class ApiResp<T> implements Serializable {
     @Serial
     private static final long serialVersionUID = -1602535463064962419L;
 
+    @Default
     private Outcome outcome = UNKNOWN;
 
     private T result;
 
+    @Default
     private Set<Error> errors = Collections.emptySet();
 
+    @Default
     private String meta = "";
 
     public static <T> ApiResp<T> createSuccessResp(T result) {

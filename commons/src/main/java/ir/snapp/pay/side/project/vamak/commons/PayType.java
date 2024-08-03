@@ -4,7 +4,7 @@ import lombok.Getter;
 
 import java.util.Map;
 
-@Getter
+@Getter(onMethod_ = @Override)
 public enum PayType implements Identifiable<Character> {
 
     UNK ('U'),
@@ -13,7 +13,7 @@ public enum PayType implements Identifiable<Character> {
 
     private static final Map<Character, PayType> CODES = Identifiable.createCache(PayType.class);
 
-    private final char code;
+    private final Character code;
 
     PayType(char code) {
         this.code = code;

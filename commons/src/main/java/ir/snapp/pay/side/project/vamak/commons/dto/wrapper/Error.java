@@ -12,6 +12,7 @@ import java.util.Comparator;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 import static ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Reason.UNKNOWN;
+import static lombok.Builder.Default;
 
 @Data
 @Builder
@@ -23,12 +24,15 @@ public class Error implements Serializable, Comparable<Error> {
     @Serial
     private static final long serialVersionUID = -3045731012099931205L;
 
+    @Default
     private Reason reason = UNKNOWN;
 
     private String param;
 
+    @Default
     private String description = "";
 
+    @Default
     private String[] values = new String[0];
 
     @Override

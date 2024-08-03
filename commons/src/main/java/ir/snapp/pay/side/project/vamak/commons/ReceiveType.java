@@ -4,7 +4,7 @@ import lombok.Getter;
 
 import java.util.Map;
 
-@Getter
+@Getter(onMethod_ = @Override)
 public enum ReceiveType implements Identifiable<Character> {
 
     UNKNOWN     ('U'),
@@ -13,7 +13,7 @@ public enum ReceiveType implements Identifiable<Character> {
 
     private static final Map<Character, ReceiveType> CODES = Identifiable.createCache(ReceiveType.class);
 
-    private final char code;
+    private final Character code;
 
     ReceiveType(char code) {
         this.code = code;
