@@ -1,0 +1,17 @@
+include:
+  - local: '.gitlab/env.gitlab-ci.yml'
+    inputs:
+#      is-debugging-enabled: false
+
+stages:
+  #  - .pre
+  - verify
+  - build
+  - test
+  - deploy
+  #  - .post
+
+test:
+  stage: test
+  script:
+    - 'echo test'
