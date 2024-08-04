@@ -3,17 +3,15 @@ package ir.snapp.pay.side.project.vamak.commons.constraint;
 import ir.snapp.pay.side.project.vamak.commons.constraint.validator.GeneralUniqueValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import org.springframework.cglib.proxy.NoOp;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.ElementType.TYPE_USE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static ir.snapp.pay.side.project.vamak.commons.constraint.Unique.List;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
