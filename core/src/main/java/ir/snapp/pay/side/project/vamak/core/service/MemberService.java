@@ -1,6 +1,7 @@
 package ir.snapp.pay.side.project.vamak.core.service;
 
 import ir.snapp.pay.side.project.vamak.commons.constraint.Unique;
+import ir.snapp.pay.side.project.vamak.commons.dto.PersonalInfo;
 import ir.snapp.pay.side.project.vamak.commons.dto.UserInfo;
 import ir.snapp.pay.side.project.vamak.commons.model.Member;
 import ir.snapp.pay.side.project.vamak.core.repo.MemberRepository;
@@ -24,14 +25,18 @@ public class MemberService implements Unique.Checker<String> {
         return repo.existsByUsername(username);
     }
 
-    public void createMember(UserInfo userInfo) {
+    public void createMember(UserInfo info) {
         repo.save(Member.builder()
-                .name(userInfo.getName())
-                .family(userInfo.getFamily())
-                .username(userInfo.getUsername())
-                .password(encoder.encode(userInfo.getPassword()))
-                .mobile(userInfo.getMobile())
-                .birthday(userInfo.getBirthday())
+                .name(info.getName())
+                .family(info.getFamily())
+                .username(info.getUsername())
+                .password(encoder.encode(info.getPassword()))
+                .mobile(info.getMobile())
+                .birthday(info.getBirthday())
                 .build());
+    }
+
+    public void updateMember(PersonalInfo info) {
+        repo.updatePersonalState(info);
     }
 }

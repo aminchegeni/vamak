@@ -1,5 +1,6 @@
 package ir.snapp.pay.side.project.vamak.core.api.impl;
 
+import ir.snapp.pay.side.project.vamak.commons.dto.PersonalInfo;
 import ir.snapp.pay.side.project.vamak.commons.dto.UserInfo;
 import ir.snapp.pay.side.project.vamak.core.api.MemberMgmt;
 import ir.snapp.pay.side.project.vamak.core.service.MemberService;
@@ -15,7 +16,12 @@ public class MemberController implements MemberMgmt {
     }
 
     @Override
-    public void add(UserInfo userInfo) {
-        service.createMember(userInfo);
+    public void add(UserInfo info) {
+        service.createMember(info);
+    }
+
+    @Override
+    public void update(PersonalInfo info) {
+        service.updateMember(info);
     }
 }
