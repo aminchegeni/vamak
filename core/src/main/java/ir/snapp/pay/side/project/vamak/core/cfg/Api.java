@@ -1,7 +1,5 @@
 package ir.snapp.pay.side.project.vamak.core.cfg;
 
-import org.springframework.core.annotation.AliasFor;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
