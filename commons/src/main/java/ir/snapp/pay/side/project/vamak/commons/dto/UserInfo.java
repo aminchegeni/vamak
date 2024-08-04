@@ -1,5 +1,6 @@
 package ir.snapp.pay.side.project.vamak.commons.dto;
 
+import ir.snapp.pay.side.project.vamak.commons.constraint.Unique;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class UserInfo implements Serializable {
     @Size(min = 1, max = 50)
     private String family;
 
+    @Unique(checker = "checker.username")
     @Pattern(regexp = "^[A-Z0-9a-z-._]{5,40}$")
     private String username;
 
