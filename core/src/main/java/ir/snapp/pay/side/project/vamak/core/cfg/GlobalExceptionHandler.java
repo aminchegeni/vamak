@@ -2,6 +2,7 @@ package ir.snapp.pay.side.project.vamak.core.cfg;
 
 import ir.snapp.pay.side.project.vamak.commons.dto.wrapper.ApiResp;
 import ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Error;
+import ir.snapp.pay.side.project.vamak.commons.exception.ApiException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.core.annotation.Order;
@@ -13,9 +14,11 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -23,8 +26,10 @@ import static ir.snapp.pay.side.project.vamak.commons.dto.wrapper.ApiResp.create
 import static ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Outcome.FAILED;
 import static ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Reason.INVALID;
 import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNullElseGet;
 import static java.util.stream.Collectors.toCollection;
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
+import static org.springframework.core.annotation.AnnotatedElementUtils.findMergedAnnotation;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -39,6 +44,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         }
         var body = createFailedResp(Set.of(new Error()));
         return super.handleExceptionInternal(e, body, new HttpHeaders(), INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<Object> handleApiException(ApiException ae, WebRequest request) {
+        var body = createFailedResp(Set.of(requireNonNullElseGet(ae.getError(), Error::new)));
+        var status = Optional.ofNullable(findMergedAnnotation(ae.getClass(), ResponseStatus.class))
+                .map(ResponseStatus::value)
+                .orElse(INTERNAL_SERVER_ERROR);
+        return super.handleExceptionInternal(ae, body, new HttpHeaders(), status, request);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
