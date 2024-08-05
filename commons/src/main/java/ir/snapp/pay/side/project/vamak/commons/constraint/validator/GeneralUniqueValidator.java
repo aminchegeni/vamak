@@ -13,6 +13,7 @@ import java.util.Objects;
 import static ir.snapp.pay.side.project.vamak.commons.constraint.Unique.Checker.NoOp;
 import static ir.snapp.pay.side.project.vamak.commons.constraint.Unique.Checker.not;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class GeneralUniqueValidator implements ApplicationContextAware, ConstraintValidator<Unique, Object> {
 
     private String name;
