@@ -8,8 +8,9 @@ import java.util.Map;
 @Getter(onMethod_ = @Override)
 public enum Reason implements Identifiable<Integer> {
 
-    UNKNOWN (-1),
-    INVALID (0);
+    UNKNOWN         (-1),
+    INVALID         (0),
+    NOT_EXISTENT    (1);
 
     private static final Map<Integer, Reason> CODES = Identifiable.createCache(Reason.class);
 
