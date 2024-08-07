@@ -24,9 +24,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
-@Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
 @EnableMethodSecurity
+@Configuration(proxyBeanMethods = false)
 public class SecurityConfig {
 
     @Bean
