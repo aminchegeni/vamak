@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static org.springframework.web.method.HandlerTypePredicate.forAnnotation;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class VamakWebConfig implements WebMvcConfigurer {
 
     @Override
