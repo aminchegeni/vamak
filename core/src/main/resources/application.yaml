@@ -35,3 +35,7 @@ spring:
         show_sql: true
         format_sql: true
     defer-datasource-initialization: true
+
+  cache:
+    type: simple
+    cache-names: user-details

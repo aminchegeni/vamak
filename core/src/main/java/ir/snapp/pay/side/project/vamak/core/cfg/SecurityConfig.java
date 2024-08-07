@@ -1,6 +1,7 @@
 package ir.snapp.pay.side.project.vamak.core.cfg;
 
 import ir.snapp.pay.side.project.vamak.core.repo.MemberRepository;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,8 +57,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserCache defaultUserDetailsCache() {
-        return new SpringCacheBasedUserCache(new ConcurrentMapCache("user-details-cache", false));
+    public UserCache defaultUserDetailsCache(CacheManager manager) {
+        return new SpringCacheBasedUserCache(manager.getCache("user-details"));
     }
 
     @Bean
