@@ -20,6 +20,8 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
     Optional<MemberDetails> findByUsername(String username);
 
+    Optional<String[]> findUsernameAndMobileByUsername(String username);
+
     @Transactional
     @Modifying
     @Query("""
@@ -29,6 +31,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
                     m.mobile   = COALESCE(:#{#info.mobile}, m.mobile),
                     m.birthday = COALESCE(:#{#info.birthday}, m.birthday)
             WHERE m.inactive = FALSE
+              AND m.deleted  = FALSE
               AND m.username = ?#{principal?.username}
             """)
     int updatePersonalState(@Param("info") PersonalInfo info);

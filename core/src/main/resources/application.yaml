@@ -38,4 +38,8 @@ spring:
 
   cache:
     type: simple
-    cache-names: user-details
+    cache-names: user-details,otp
+
+vamak:
+  otp:
+    ttl: 45
