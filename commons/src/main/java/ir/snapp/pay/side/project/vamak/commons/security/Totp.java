@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 import static java.time.LocalDateTime.now;
 
-@Data(staticConstructor = "otp")
-public class TimeBasedOtp implements Otp, Serializable {
+@Data(staticConstructor = "of")
+public class Totp implements Otp, Serializable {
 
     @Serial
     private static final long serialVersionUID = 7243782279940802709L;
@@ -17,7 +17,7 @@ public class TimeBasedOtp implements Otp, Serializable {
     private final String val;
     private final LocalDateTime expirationTime;
 
-    public TimeBasedOtp(String val, LocalDateTime expirationTime) {
+    public Totp(String val, LocalDateTime expirationTime) {
         this.val = val;
         this.expirationTime = expirationTime;
     }
