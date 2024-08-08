@@ -31,7 +31,7 @@ public class PersonalInfo implements Serializable {
     @Size(min = 1, max = 50)
     protected String family;
 
-    @Pattern(regexp = "^0[0-9]{10}$")
+    @Pattern(regexp = "^09[0-9]{9}$")
     protected String mobile;
 
     @Past
