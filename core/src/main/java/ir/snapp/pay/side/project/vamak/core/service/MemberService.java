@@ -1,6 +1,6 @@
 package ir.snapp.pay.side.project.vamak.core.service;
 
-import ir.snapp.pay.side.project.vamak.commons.constraint.Unique;
+import ir.snapp.pay.side.project.vamak.commons.constraint.Exist;
 import ir.snapp.pay.side.project.vamak.commons.dto.PersonalInfo;
 import ir.snapp.pay.side.project.vamak.commons.dto.UserInfo;
 import ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Error;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import static ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Reason.NOT_EXISTENT;
 
 @Service("checker.username")
-public class MemberService implements Unique.Checker<String> {
+public class MemberService implements Exist.Checker<String> {
 
     private final MemberRepository repo;
 
