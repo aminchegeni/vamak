@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
 
 import static ir.snapp.pay.side.project.vamak.commons.constraint.Exist.List;
 import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
