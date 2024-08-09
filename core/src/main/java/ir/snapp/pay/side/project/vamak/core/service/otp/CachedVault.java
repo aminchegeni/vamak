@@ -44,7 +44,7 @@ public class CachedVault implements OtpVault<Totp> {
         LOGGER.log(DEBUG, () -> "%s used the otp".formatted(username));
     }
 
-    @Scheduled(fixedDelayString = "@otpConfig.getTtl()")
+    @Scheduled(fixedDelayString = "#{@otpConfig.getTtl()}")
     @SuppressWarnings("unchecked")
     public void evictExpiredOtps() {
         Map<?, Otp> store = ((Map<?, Otp>) requireNonNull(cache).getNativeCache());
