@@ -4,6 +4,7 @@ import ir.snapp.pay.side.project.vamak.commons.dto.PersonalInfo;
 import ir.snapp.pay.side.project.vamak.commons.model.Member;
 import ir.snapp.pay.side.project.vamak.core.dto.MemberDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Meta;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,7 +21,17 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
     Optional<MemberDetails> findByUsername(String username);
 
-    Optional<String[]> findUsernameAndMobileByUsername(String username);
+    @Meta(comment = """
+            1. if user doesn't exist then the optional is empty
+            2. if user mobile number is null then return an optional contains empty string
+            3. if user has mobile number then return an optional contains mobile number
+            """)
+    @Query("""
+            SELECT COALESCE(m.mobile, '') AS mobile
+            FROM Member m
+            WHERE m.username = :username
+            """)
+    Optional<String> findMobileByUsername(@Param("username") String username);
 
     @Transactional
     @Modifying

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 import static ir.snapp.pay.side.project.vamak.commons.dto.wrapper.Reason.NOT_EXISTENT;
-import static java.util.Objects.nonNull;
 
 @Service
 public class OtpService {
@@ -30,13 +29,12 @@ public class OtpService {
     }
 
     void sendTo(String username) {
-        Optional<String[]> pairs = repo.findUsernameAndMobileByUsername(username);
-        pairs.ifPresentOrElse(
-                uam -> {
-                    String mobile = uam[1];
-                    if (nonNull(mobile)) {
+        Optional<String> mobile = repo.findMobileByUsername(username);
+        mobile.ifPresentOrElse(
+                m -> {
+                    if (!m.isEmpty()) {
                         Otp otp = vault.getOtp(username);
-                        notifier.notify(otp, mobile);
+                        notifier.notify(otp, m);
                     }
                 },
                 () -> {
