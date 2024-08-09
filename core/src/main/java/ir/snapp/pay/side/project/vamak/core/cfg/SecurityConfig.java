@@ -2,7 +2,6 @@ package ir.snapp.pay.side.project.vamak.core.cfg;
 
 import ir.snapp.pay.side.project.vamak.core.repo.MemberRepository;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.CachingUserDetailsService;
@@ -24,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+import static org.springframework.http.HttpMethod.POST;
 
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -39,7 +39,8 @@ public class SecurityConfig {
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(
-                        ar -> ar.anyRequest().authenticated()
+                        ar -> ar.requestMatchers(POST, "/api/otp").not().authenticated()
+                                .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
