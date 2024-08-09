@@ -28,7 +28,7 @@ public class OtpService {
         this.vault = vault;
     }
 
-    void sendTo(String username) {
+    public void sendTo(String username) {
         Optional<String> mobile = repo.findMobileByUsername(username);
         mobile.ifPresentOrElse(
                 m -> {
@@ -49,7 +49,7 @@ public class OtpService {
         );
     }
 
-    boolean isActive(Otp received, String username) {
+    public boolean isActive(Otp received, String username) {
         try {
             Otp forwarded = vault.getOtp(username);
             return forwarded.getVal().equals(received.getVal());
